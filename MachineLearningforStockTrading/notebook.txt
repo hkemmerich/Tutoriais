@@ -1,0 +1,24 @@
+import json
+from oandapyV20 import API
+import oandapyV20.endpoints.pricing as pricing
+import oandapyV20.endpoints.instruments as instruments
+
+pp = pprint.PrettyPrinter(width=41, compact=True)
+
+access_token = oandaapi.oandaAPI
+accountID = "001-011-3810927-001" 
+client = API(access_token=access_token, environment="live")
+
+"""
+params = {"instruments": "DE30_EUR,EUR_GBP"}
+prices = pricing.PrincingInfo(accontID, params=params)
+prices = client.request(prices)
+"""
+params = {
+    "granularity": "H1",
+    "count": 5000
+}
+hist_data = instruments.InstrumentsCandles(instrument = 'EUR_GBP', params=params)
+hist_data = client.request(hist_data)
+
+pp.pprint(hist_data)
